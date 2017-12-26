@@ -2,15 +2,29 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import echarts from 'echarts'
+import Scatter from './Scatter';
+import Calendar from './Calendar';
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
             option: {
-               // backgroundColor: '#2c343c',
+                visualMap: {
+                    show: true,
+                    min: 30,
+                    max: 600,
+                    inRange: {
+                        colorLightness: [0, 1]
+                    }
+                },
+                // textStyle: {
+                //     color: 'rgba(255, 255, 255, 0.3)'
+                // },
+                // backgroundColor: '#2c343c',
                 itemStyle: {
                     normal: {
+                        color: '#c23531',
                         // 阴影的大小
                         shadowBlur: 50,
                         // 阴影水平方向上的偏移
@@ -42,7 +56,9 @@ class App extends Component {
                         type: 'pie',
                         radius: '60%',
                         data: [
-                            {value: 235, name: '视频广告'},
+                            {
+                                value: 235, name: '视频广告'
+                            },
                             {value: 274, name: '联盟广告'},
                             {value: 310, name: '邮件营销'},
                             {value: 335, name: '直接访问'},
@@ -55,8 +71,11 @@ class App extends Component {
     }
 
     componentDidMount() {
-        var myChart = echarts.init(this.refs.bar);
-        myChart.setOption(this.state.option);
+        if (this.refs.bar){
+            var myChart = echarts.init(this.refs.bar);
+            myChart.setOption(this.state.option);
+        }
+
     }
 
     render() {
@@ -64,12 +83,14 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Welcome to React </h1>
+                    <h1 className="App-title">Welcome to Echarts </h1>
                 </header>
                 <section>
-                    <div className='main' ref='bar'></div>
-
+                    {/*<div className='main' ref='bar'></div>*/}
+                    {/*<Scatter/>*/}
+                    <Calendar/>
                 </section>
+
             </div>
         );
     }
