@@ -115,7 +115,7 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Welcome test </h1>
+                    <h1 className="App-title">Welcome</h1>
                 </header>
                 <section>
                     {/*<div className='main' ref='bar'></div>*/}
