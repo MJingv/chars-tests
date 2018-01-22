@@ -4,18 +4,37 @@ import './App.css';
 import echarts from 'echarts'
 import Scatter from './Scatter';
 import Calendar from './Calendar';
-
+import Gauge from './Gauge';
+import Temperature from './Temperature'
+import Earth from './Earth'
 class App extends Component {
     constructor() {
         super();
         this.state = {
             option: {
+                global:true,
                 visualMap: {
                     show: true,
-                    min: 30,
-                    max: 600,
+                    min: 0,
+                    max: 80,
                     inRange: {
-                        colorLightness: [0, 1]
+                        colorLightness: [0,0.8]
+                    }
+                },
+                tooltip:{
+                    show:true,
+                    trigger:'item',
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: {readOnly: false},
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
                     }
                 },
                 // textStyle: {
@@ -42,7 +61,7 @@ class App extends Component {
                 title: {
                     text: 'ECharts 入门示例'
                 },
-                tooltip: {},
+
                 legend: {
                     data: ['销量']
                 },
@@ -53,16 +72,29 @@ class App extends Component {
                 series: [
                     {
                         name: '访问来源',
-                        type: 'pie',
+                        type: 'bar',
                         radius: '60%',
+                        markPoint:{
+                          data:[
+                              {type:'max',name:'最大值'},
+                              {type:'min',name:'最小值',symbol:'arrow'},
+
+                          ]
+                        },
+                        markLine:{
+                            data:[
+                                {type:'average',name:'平均值'},
+                            ]
+                        },
                         data: [
                             {
-                                value: 235, name: '视频广告'
+                                value: 23, name: '衬衫'
                             },
-                            {value: 274, name: '联盟广告'},
-                            {value: 310, name: '邮件营销'},
-                            {value: 335, name: '直接访问'},
-                            {value: 400, name: '搜索引擎'}
+                            {value: 74, name: '羊毛衫'},
+                            {value: 31, name: '雪纺衫'},
+                            {value: 50, name: '裤子'},
+                            {value: 40, name: '高跟鞋'},
+                            {value: 22, name: '袜子'}
                         ]
                     }
                 ]
@@ -83,12 +115,16 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Welcome to Echarts </h1>
+                    <h1 className="App-title">Welcome test </h1>
                 </header>
                 <section>
                     {/*<div className='main' ref='bar'></div>*/}
                     {/*<Scatter/>*/}
-                    <Calendar/>
+                    {/*<Calendar/>*/}
+                    {/*<Gauge/>*/}
+                    {/*<Temperature/>*/}
+                    <Earth/>
+
                 </section>
 
             </div>

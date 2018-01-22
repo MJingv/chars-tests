@@ -5,8 +5,27 @@ import echarts from 'echarts'
 export default class Calendar extends Component {
     constructor() {
         super();
-        this.state={
-            option : {
+        this.state = {
+            option: {
+                title:{
+                    show:true,
+                    text:'my calendar',
+                    subtext:'from jehol',
+                    left:'center',
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: {readOnly: false},
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+
 
                 visualMap: {
                     show: true,
@@ -16,24 +35,22 @@ export default class Calendar extends Component {
                 calendar: {
                     range: ['2017-02', '2017-10'],
                     // cellSize: [20, 40],
-                    left:80,
-                    splitLine:true,
-                },
-                symbolSize: function (val) {
-                    return val[2] / 1000;
+                    left: 80,
+                    splitLine: true,
                 },
                 series: {
-                   // type: 'graph',
+                    // type: 'graph',
                     hoverAnimation: true,
-                     type: 'heatmap',
+                    type: 'heatmap',
                     coordinateSystem: 'calendar',
-                    data:this.getVirtulData(2017),
+                    data: this.getVirtulData(2017),
                 }
             }
 
         }
 
     }
+
     getVirtulData(year) {
         year = year || '2017';
         var date = +echarts.number.parseDate(year + '-01-01');
@@ -46,15 +63,18 @@ export default class Calendar extends Component {
                 Math.floor(Math.random() * 100)
             ]);
         }
+        console.log(data)
         return data;
     }
+
     componentDidMount() {
         var myChart = echarts.init(this.refs.main);
         myChart.setOption(this.state.option);
     }
-    render(){
 
-        return(
+    render() {
+
+        return (
             <div>
                 hello calendar
                 <div className='main' ref='main'></div>

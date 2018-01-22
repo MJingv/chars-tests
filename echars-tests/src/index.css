@@ -10,8 +10,8 @@ section{
 }
 
 .main {
-    width:1200px;
-    height: 400px;
+    width:4096px;
+    height: 2048px;
     display: flex;
 }
 
